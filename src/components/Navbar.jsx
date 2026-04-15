@@ -1,4 +1,10 @@
+"use client";
+
+import { useState } from "react";
+
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
   const navItems = [
     {
       name: 'Education',
@@ -67,10 +73,10 @@ export default function Navbar() {
   
   return (
     <nav className="fixed top-0 w-full z-50 bg-navy/80 backdrop-blur-md border-b border-ocean/10">
-      {/* Changed max-w-5xl to max-w-7xl to widen the navbar */}
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <a href="#" className="font-display font-bold text-xl tracking-tight text-crisp hover:text-ocean transition-colors">SAN.</a>
         
+        {/* Desktop Links (Hidden on mobile) */}
         <div className="hidden md:flex gap-4">
           {navItems.map(item => (
             <a 
@@ -85,8 +91,42 @@ export default function Navbar() {
             </a>
           ))}
         </div>
+
+        {/* Mobile Hamburger Button */}
+        <button 
+          onClick={() => setIsOpen(!isOpen)}
+          className="md:hidden text-cool hover:text-crisp focus:outline-none transition-colors"
+          aria-label="Toggle Menu"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {isOpen ? (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /> 
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /> 
+            )}
+          </svg>
+        </button>
         
       </div>
+
+      {/* Mobile Menu Dropdown */}
+      {isOpen && (
+        <div className="md:hidden bg-navy/95 backdrop-blur-lg border-b border-ocean/10 shadow-lg absolute w-full left-0 top-16">
+          <div className="px-6 pt-4 pb-8 flex flex-col gap-6">
+            {navItems.map(item => (
+              <a 
+                key={item.name} 
+                href={`#${item.name.toLowerCase()}`} 
+                onClick={() => setIsOpen(false)} // Closes menu when a link is clicked
+                className="flex items-center gap-3 font-mono text-[15px] text-cool hover:text-ocean transition-colors"
+              >
+                <span className="text-ocean">{item.icon}</span>
+                {item.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
