@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #F4F7F8; /* Matches the new "navy" */
+  color: #0F172A; /* Matches the new "crisp" */
+}
+
+/* Light mode custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F4F7F8;
+}
+::-webkit-scrollbar-thumb {
+  background: #E2E8F0;
+  border: 1px solid #0F766E;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0F766E;
+}
