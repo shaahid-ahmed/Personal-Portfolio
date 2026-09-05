@@ -36,7 +36,7 @@ export const data = {
     {
       institution: "NYU Tandon Career Hub", location: "Brooklyn, NY",
       role: "Data Science Bootcamp Instructor",
-      date: "Sep 2025 - Present",
+      date: "Sep 2025 - Aug 2026",
       bullets: [
         "Teaching statistical modeling, ML fundamentals, and Python (NumPy, pandas) to 100+ students.",
         "Designed curriculum covering regression, classification, feature engineering, and model evaluation pipelines."
