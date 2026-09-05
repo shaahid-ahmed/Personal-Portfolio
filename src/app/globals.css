@@ -2,26 +2,110 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
+/*
+  Design tokens. Channels are space-separated RGB so Tailwind's /opacity
+  modifiers resolve through rgb(var(--token) / <alpha-value>).
+*/
+:root {
+  --base: 244 247 248;       /* page ground - sea-salt gray */
+  --base-alt: 235 241 242;   /* recessed ground, section banding */
+  --surface: 255 255 255;    /* raised card */
+  --surface-alt: 248 251 251;/* secondary card / inner well */
+  --ocean: 15 118 110;       /* primary accent */
+  --seafoam: 20 184 166;     /* hover accent */
+  --deep: 19 78 74;          /* pressed / dark accent */
+  --sand: 234 226 210;       /* warm neutral for contrast against teal */
+  --crisp: 15 23 42;         /* headings */
+  --cool: 71 85 105;         /* body copy */
+  --muted: 100 116 139;      /* captions, metadata */
 }
 
-body {
-  background-color: #F4F7F8; /* Matches the new "navy" */
-  color: #0F172A; /* Matches the new "crisp" */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: rgb(var(--base));
+    color: rgb(var(--crisp));
+    /* Faint grain so the large flat areas do not read as dead space. */
+    background-image: radial-gradient(rgb(var(--ocean) / 0.05) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  /* Anchor targets clear the fixed 4rem navbar without margin hacks. */
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
+
+  ::selection {
+    background-color: rgb(var(--ocean) / 0.22);
+    color: rgb(var(--deep));
+  }
+
+  /* One visible focus treatment for every interactive element. */
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid rgb(var(--ocean));
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
 }
 
-/* Light mode custom scrollbar */
+@layer components {
+  /* Shared card shell - see components/Card.jsx */
+  .card-shell {
+    @apply relative rounded-card border border-ocean/15 bg-surface shadow-card
+           transition-all duration-300 ease-smooth;
+  }
+  .card-shell:hover {
+    @apply border-ocean/40 shadow-lift -translate-y-1;
+  }
+}
+
+/* Scroll reveal: hidden until the observer marks the element visible. */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.reveal[data-visible='true'] {
+  opacity: 1;
+  transform: none;
+}
+
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #F4F7F8;
+  background: rgb(var(--base));
 }
 ::-webkit-scrollbar-thumb {
-  background: #E2E8F0;
-  border: 1px solid #0F766E;
+  background: rgb(var(--ocean) / 0.35);
+  border-radius: 999px;
+  border: 3px solid rgb(var(--base));
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #0F766E;
+  background: rgb(var(--ocean) / 0.7);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }

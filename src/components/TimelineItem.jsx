@@ -1,20 +1,81 @@
-export default function TimelineItem({ item }) {
+function monogram(name = '') {
+  return name
+    .replace(/\(.*?\)/g, '')
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((word) => word[0])
+    .join('')
+    .toUpperCase();
+}
+
+export default function TimelineItem({ item, isLast = false }) {
+  const org = item.institution || item.company;
+
   return (
-    <div className="relative pl-8 pb-10 border-l border-ocean/20 last:pb-0 group">
-      <div className="absolute left-[-5px] top-1.5 h-2.5 w-2.5 rounded-full bg-ocean group-hover:animate-pulse group-hover:shadow-[0_0_8px_rgba(13,148,136,0.6)] transition-all"></div>
-      <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-3">
-        <h3 className="font-display font-bold text-xl text-crisp">
-          {item.role} <span className="text-ocean">@ {item.institution || item.company}</span>
-        </h3>
-        <span className="font-mono text-sm text-cool mt-1 md:mt-0">{item.date}</span>
+    <div className={`group relative pl-10 ${isLast ? '' : 'pb-10'}`}>
+      {/* Rail + node */}
+      <span
+        aria-hidden="true"
+        className={`absolute left-[7px] top-3 h-full w-px bg-gradient-to-b from-ocean/35 via-ocean/15 to-transparent ${
+          isLast ? 'hidden' : ''
+        }`}
+      />
+      <span
+        aria-hidden="true"
+        className="absolute left-0 top-2 flex h-[15px] w-[15px] items-center justify-center rounded-full border border-ocean/30 bg-surface transition-all duration-300 group-hover:border-ocean group-hover:shadow-glow"
+      >
+        <span className="h-[6px] w-[6px] rounded-full bg-ocean transition-transform duration-300 group-hover:scale-125" />
+      </span>
+
+      <div className="card-shell p-6">
+        <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+          <div className="flex items-start gap-4">
+            <span
+              aria-hidden="true"
+              className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-ocean/10 font-mono text-sm font-medium text-ocean sm:flex"
+            >
+              {monogram(org)}
+            </span>
+            <div>
+              <h3 className="font-display text-xl font-bold leading-snug text-crisp">{item.role}</h3>
+              <p className="mt-1 font-mono text-sm text-ocean">{org}</p>
+              {item.location && (
+                <p className="mt-1 flex items-center gap-1.5 font-body text-xs text-muted">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                  {item.location}
+                </p>
+              )}
+            </div>
+          </div>
+
+          <span className="shrink-0 self-start rounded-pill border border-ocean/15 bg-surface-alt px-3 py-1 font-mono text-xs text-muted">
+            {item.date}
+          </span>
+        </div>
+
+        <ul className="mt-5 space-y-2.5 border-t border-ocean/10 pt-5">
+          {item.bullets.map((bullet, i) => (
+            <li key={i} className="flex items-start font-body text-sm leading-relaxed text-cool">
+              <span aria-hidden="true" className="mr-3 mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-ocean/50" />
+              {bullet}
+            </li>
+          ))}
+        </ul>
       </div>
-      <ul className="list-none space-y-2">
-        {item.bullets.map((bullet, i) => (
-          <li key={i} className="font-body text-cool text-sm leading-relaxed flex items-start before:content-['▹'] before:text-ocean before:mr-3 before:font-mono">
-            {bullet}
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }
