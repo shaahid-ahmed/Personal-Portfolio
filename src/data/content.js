@@ -5,23 +5,36 @@ export const data = {
     email: "sn4272@nyu.edu",
     github: "https://github.com/shaahid-ahmed",
     linkedin: "https://www.linkedin.com/in/shaahid-ahmed-n-00b236154/",
-    phone: "+1-929-698-0495"
+    location: "New York, NY",
+    status: "SDE Intern @ AWS \u00b7 Summer 2026",
+    focus: ["Machine Learning", "Speech & Audio", "Quantitative Research"]
   },
   education: [
     { degree: "M.S. in Computer Science", institution: "New York University", date: "Sep 2025 - May 2027", specialization: "Algorithms, ML, Statistical Methods" },
     { degree: "B.Tech in Computer Science and Engineering", institution: "Vellore Institute of Technology", date: "Sep 2021 - Jul 2025", specialization: "Specialization in AI and ML" }
   ],
   experience: [
+    { company: "Amazon Web Services (AWS)", location: "Seattle, WA", role: "SDE Intern, Capacity Health Infrastructure", date: "May 2026 - Aug 2026", bullets: ["Architecting forecasting and visualization infrastructure for network capacity planning; modeling AWS topology as a graph to predict congestion and inform datacenter scaling decisions."] },
     { company: "Guhan Industrial Manufacturing Solutions", role: "Python Developer Intern", date: "Jul 2023 - Mar 2024", bullets: ["Built a graph-based toolpath optimization system for CNC Water-Jet machining, reducing operational time by 90%.", "Automated 2D geometry processing pipeline handling LINE, ARC, SPLINE, and CIRCLE entities at scale."] }
   ],
   research: [
     { institution: "Samsung R&D Institute", role: "Research Intern - Speech and Audio processing", date: "Nov 2024 - Jul 2025", bullets: ["Built 10,000+ sample MREC dataset spanning 100 real-world acoustic conditions for model training.", "Designed SOTA deep learning model achieving 35% ERLE improvement over baselines.", "Optimized inference pipeline to reduce latency by 40% under real-time computational constraints."] },
-    { institution: "IIT Madras", role: "Research Intern - Combinatorial Optimization", date: "May 2024 - Jul 2024", bullets: ["Applied Reinforcement Learning (PPO) to a 2D bin-packing problem under geometric and material constraints, improving resource utilization by 22%.", "Engineered reward shaping and layout heuristics; validated against benchmark datasets, boosting packing efficiency by 30%."] },
-    { institution: "NIT Tiruchirappalli", role: "Research Intern - Machine Learning", date: "May 2022 - Jul 2022", bullets: ["Built ML classification models on 1500+ district-level records across 5 Southern Indian states.", "Published in IEEE ICSES 2023 achieving 92% accuracy on employability rate stratification."] }
+    { institution: "IIT Madras", location: "Chennai, India", role: "Research Intern - Combinatorial Optimization", date: "May 2024 - Jul 2024", bullets: ["Applied Reinforcement Learning (PPO) to a 2D bin-packing problem under geometric and material constraints, improving resource utilization by 22%.", "Engineered reward shaping and layout heuristics; validated against benchmark datasets, boosting packing efficiency by 30%."] },
+    { institution: "NIT Tiruchirappalli", location: "Tiruchirappalli, India", role: "Research Intern - Machine Learning", date: "May 2022 - Jul 2022", bullets: ["Built ML classification models on 1500+ district-level records across 5 Southern Indian states.", "Published in IEEE ICSES 2023 achieving 92% accuracy on employability rate stratification."] }
   ],
   teaching: [
     {
       institution: "NYU Tandon Career Hub",
+      location: "Brooklyn, NY",
+      role: "LeetCode Bootcamp Instructor",
+      date: "Sep 2026 - Present",
+      bullets: [
+        "Leading technical interview preparation sessions covering data structures, algorithms, and recurring LeetCode problem-solving patterns.",
+        "Running live problem walkthroughs and mock interviews, coaching students on complexity analysis and on communicating their approach under time constraints."
+      ]
+    },
+    {
+      institution: "NYU Tandon Career Hub", location: "Brooklyn, NY",
       role: "Data Science Bootcamp Instructor",
       date: "Sep 2025 - Present",
       bullets: [
@@ -31,6 +44,7 @@ export const data = {
     },
     {
       institution: "Vellore Institute of Technology",
+      location: "Vellore, India",
       role: "Teaching Assistant - BCSE209L: Machine Learning",
       date: "Jan 2024 - May 2024",
       bullets: [
@@ -107,16 +121,23 @@ export const data = {
   ],
   publications: [
     {
-      title: "A Machine Learning Approach for District-Wise Classification of Employability Rate in Southern Indian States",
-      venue: "IEEE - 2023 International Conference on Innovative Computing, Intelligent Communication and Smart Electrical Systems (ICSES)", // Or whatever journal it was published in
-      date: "2024", // Update with the actual year
-      url: "https://ieeexplore.ieee.org/document/10465328" 
+      title: "Multi-Reference Echo Cancellation",
+      venue: "IEEE Access",
+      date: "2026",
+      doi: "10.1109/ACCESS.2026.3709458",
+      url: "https://ieeexplore.ieee.org/document/11593844"
     },
     {
       title: "Prediction of CKD Using Choas Based Particle Swarm Optimization (CBPSO) with Ensemble Method",
-      venue: "IEEE - 2024 International Conference on Innovative Computing, Intelligent Communication and Smart Electrical Systems (ICSES)", // Update with actual venue
-      date: "2025", // Update with actual year
+      venue: "IEEE - 2024 International Conference on Innovative Computing, Intelligent Communication and Smart Electrical Systems (ICSES)",
+      date: "2025",
       url: "https://ieeexplore.ieee.org/document/10910636"
+    },
+    {
+      title: "A Machine Learning Approach for District-Wise Classification of Employability Rate in Southern Indian States",
+      venue: "IEEE - 2023 International Conference on Innovative Computing, Intelligent Communication and Smart Electrical Systems (ICSES)",
+      date: "2024",
+      url: "https://ieeexplore.ieee.org/document/10465328"
     }
   ],
   skills: {
